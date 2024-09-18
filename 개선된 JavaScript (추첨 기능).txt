@@ -1,0 +1,26 @@
+document.getElementById('drawButton').addEventListener('click', function() {
+    const lottoNumbers = generateLottoNumbers();
+    displayLottoNumbers(lottoNumbers);
+});
+
+function generateLottoNumbers() {
+    const numbers = [];
+    while (numbers.length < 6) {
+        const randomNum = Math.floor(Math.random() * 45) + 1;
+        if (!numbers.includes(randomNum)) {
+            numbers.push(randomNum);
+        }
+    }
+    return numbers.sort((a, b) => a - b);
+}
+
+function displayLottoNumbers(numbers) {
+    const lottoNumbersDiv = document.getElementById('lottoNumbers');
+    lottoNumbersDiv.innerHTML = ''; // 기존 숫자를 비움
+
+    numbers.forEach(num => {
+        const numElement = document.createElement('span');
+        numElement.textContent = num;
+        lottoNumbersDiv.appendChild(numElement);
+    });
+}
